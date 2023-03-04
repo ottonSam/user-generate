@@ -1,0 +1,19 @@
+{
+  "name": "user-generate-backend",
+  "version": "1.0.0",
+  "description": "Api que facilita a criação de dados de usuário utilizando as ferramentas da plataforma 4Devs.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts"
+  },
+  "author": "Samuel Ótton Nogueira Maia",
+  "license": "MIT",
+  "devDependencies": {
+    "tsx": "^3.12.3"
+  },
+  "dependencies": {
+    "@killovsky/4devs": "^1.0.1",
+    "express": "^4.18.2"
+  }
+}
