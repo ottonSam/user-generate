@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import validationSchema from "../utils/validationSchema";
 import FormFields from "./FormFields";
-import { Button, Typography } from "@mui/material";
-import dataFormat from "../utils/dataFormt";
-import api from "../services/api";
+import { Button } from "@mui/material";
+import apiRequest from "../services/apiRequest";
 
 interface IFormInputs {
   numero_usuarios: number;
@@ -34,10 +32,15 @@ interface IFormInputs {
   cor: boolean;
 }
 
-const UserGenerateForm = () => {
-  const [showForm, setShowForm] = useState(true);
-  const [dataUsers, setDataUsers] = useState([{}]);
+interface IUserGenerateFormProps {
+  setDataUsers: (e: any) => void;
+  setShowForm: (e: any) => void;
+}
 
+const UserGenerateForm = ({
+  setDataUsers,
+  setShowForm,
+}: IUserGenerateFormProps) => {
   const methods = useForm<IFormInputs>({
     resolver: yupResolver(validationSchema),
   });
@@ -45,34 +48,23 @@ const UserGenerateForm = () => {
   const formSubmitHandler: SubmitHandler<IFormInputs> = async (
     data: IFormInputs
   ) => {
-    const numberUsers = data.numero_usuarios;
-    const fieldsRequest = dataFormat(data);
-    const apiResponse = await api({
-      data: {
-        numero_usuarios: numberUsers,
-        campos: fieldsRequest,
-      },
-    });
-    apiResponse.status === 200 && setDataUsers(apiResponse.data);
-    console.log(apiResponse.data);
-    setShowForm(false);
+    const apiResponse = await apiRequest(data);
+    if (apiResponse.status === 200) {
+      console.log(apiResponse.data);
+      setDataUsers(apiResponse.data);
+      setShowForm(false);
+    }
   };
+
   return (
-    <div>
-      {showForm ? (
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-            <FormFields />
-            <Button type="submit" variant="contained" color="primary">
-              Enviar
-            </Button>
-          </form>
-        </FormProvider>
-      ) : (
-        <h1>🎉Formulário enviado parabéns🎉</h1>
-      )}
-      {!showForm && <Typography>{JSON.stringify(dataUsers)}</Typography>}
-    </div>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
+        <FormFields />
+        <Button type="submit" variant="contained" color="primary">
+          Enviar
+        </Button>
+      </form>
+    </FormProvider>
   );
 };
 export default UserGenerateForm;
