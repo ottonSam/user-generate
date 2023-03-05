@@ -3,7 +3,7 @@ import React from "react";
 function App() {
   return (
     <div className="App">
-      <h1>App clean</h1>
+      <h1>hot reload</h1>
     </div>
   );
 }
