@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import validationSchema from "../utils/validationSchema";
 import FormFields from "./FormFields";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import apiRequest from "../services/apiRequest";
 
 interface IFormInputs {
@@ -50,7 +50,6 @@ const UserGenerateForm = ({
   ) => {
     const apiResponse = await apiRequest(data);
     if (apiResponse.status === 200) {
-      console.log(apiResponse.data);
       setDataUsers(apiResponse.data);
       setShowForm(false);
     }
@@ -58,6 +57,9 @@ const UserGenerateForm = ({
 
   return (
     <FormProvider {...methods}>
+      <Typography variant="h5" marginBottom={1}>
+        Preencha o formulário para a criação dos usuários
+      </Typography>
       <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
         <FormFields />
         <Button type="submit" variant="contained" color="primary">
