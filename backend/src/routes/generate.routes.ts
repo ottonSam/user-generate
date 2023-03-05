@@ -6,6 +6,6 @@ const generateRoutes = Router();
 
 const generateUser = new GenerateUserController();
 
-generateRoutes.get("/", generateUser.handle);
+generateRoutes.post("/", generateUser.handle);
 
 export { generateRoutes };
