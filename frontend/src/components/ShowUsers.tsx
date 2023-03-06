@@ -12,14 +12,34 @@ const ShowUsers = ({ usersData, setShowForm }: IShowUsersProps) => {
     setShowForm(true);
   };
 
+  const copyUsers = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(usersData, null, 2));
+  };
+
   return (
-    <Box>
+    <Box display="flex" flexDirection="column">
       <Typography variant="h5" marginBottom={1}>
         🎉Parabéns os usuários foram criados com sucesso🎉
       </Typography>
+      <Button
+        sx={{
+          marginTop: 2,
+          alignSelf: "flex-end",
+          borderRadius: 4,
+          boxShadow: 3,
+        }}
+        variant="outlined"
+        size="small"
+        onClick={copyUsers}
+      >
+        Copiar
+      </Button>
       {users}
       <Button
-        type="button"
+        sx={{
+          maxWidth: 300,
+          alignSelf: "center",
+        }}
         color="success"
         variant="contained"
         onClick={handleReset}

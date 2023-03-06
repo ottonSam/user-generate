@@ -1,4 +1,4 @@
-import { Box, Button, List } from "@mui/material";
+import { Stack, Button, List } from "@mui/material";
 import { useState } from "react";
 import SwitchComponent from "./SwitchComponent";
 
@@ -10,26 +10,50 @@ const DataUserFields = () => {
   };
   return (
     <>
-      <Box
+      <Stack
+        gap={2}
+        direction="row"
+        margin="auto"
+        paddingBottom={1}
         sx={{
           marginTop: 2,
           borderBottom: 1,
           borderColor: "divider",
         }}
       >
-        <Button type="button" onClick={() => handleChange(0)}>
+        <Button
+          variant={showCase === 0 ? "contained" : "outlined"}
+          color="secondary"
+          type="button"
+          onClick={() => handleChange(0)}
+        >
           Dados autenticação
         </Button>
-        <Button type="button" onClick={() => handleChange(1)}>
+        <Button
+          variant={showCase === 1 ? "contained" : "outlined"}
+          color="secondary"
+          type="button"
+          onClick={() => handleChange(1)}
+        >
           Dados pessoais
         </Button>
-        <Button type="button" onClick={() => handleChange(2)}>
+        <Button
+          variant={showCase === 2 ? "contained" : "outlined"}
+          color="secondary"
+          type="button"
+          onClick={() => handleChange(2)}
+        >
           Endereço
         </Button>
-        <Button type="button" onClick={() => handleChange(3)}>
+        <Button
+          variant={showCase === 3 ? "contained" : "outlined"}
+          color="secondary"
+          type="button"
+          onClick={() => handleChange(3)}
+        >
           Outros
         </Button>
-      </Box>
+      </Stack>
       <List sx={{ display: showCase === 0 ? "block" : "none" }}>
         <SwitchComponent name="nome" label="Nome" />
         <SwitchComponent name="email" label="Email" />
