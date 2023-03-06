@@ -1,0 +1,27 @@
+const fields = [
+  "nome",
+  "idade",
+  "cpf",
+  "rg",
+  "data_nasc",
+  "sexo",
+  "signo",
+  "mae",
+  "pai",
+  "email",
+  "senha",
+  "cep",
+  "endereco",
+  "numero",
+  "bairro",
+  "cidade",
+  "estado",
+  "telefone_fixo",
+  "celular",
+  "altura",
+  "peso",
+  "tipo_sanguineo",
+  "cor",
+];
+
+export default fields;

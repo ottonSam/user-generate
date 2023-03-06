@@ -1,11 +1,13 @@
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import validationSchema from "../utils/validationSchema";
-import FormFields from "./FormFields";
-import { Alert, Button, Snackbar, Typography } from "@mui/material";
-import apiRequest from "../services/apiRequest";
 import { useState } from "react";
+import { Alert, Button, Snackbar, Typography } from "@mui/material";
+
+import apiRequest from "../services/apiRequest";
+import validationSchema from "../utils/validationSchema";
+import fields from "../utils/fields";
+
+import FormFields from "./FormFields";
 
 interface IFormInputs {
   numero_usuarios: number;
@@ -32,32 +34,6 @@ interface IFormInputs {
   tipo_sanguineo: boolean;
   cor: boolean;
 }
-
-const fields = [
-  "nome",
-  "idade",
-  "cpf",
-  "rg",
-  "data_nasc",
-  "sexo",
-  "signo",
-  "mae",
-  "pai",
-  "email",
-  "senha",
-  "cep",
-  "endereco",
-  "numero",
-  "bairro",
-  "cidade",
-  "estado",
-  "telefone_fixo",
-  "celular",
-  "altura",
-  "peso",
-  "tipo_sanguineo",
-  "cor",
-];
 
 interface IUserGenerateFormProps {
   setDataUsers: (e: any) => void;
