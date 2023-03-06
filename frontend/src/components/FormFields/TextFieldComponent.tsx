@@ -22,6 +22,7 @@ const TextFieldComponent = ({ name, label }: ITextFieldComponentProps) => {
             {...field}
             label={label}
             variant="outlined"
+            type="number"
             error={!!errors[name]}
             helperText={errors[name]?.message?.toString()}
           />

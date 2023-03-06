@@ -1,7 +1,13 @@
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
-  numero_usuarios: yup.number().min(1).max(30).required(),
+  numero_usuarios: yup
+    .number()
+    .min(1, "O valor informado deve ser maior que 0")
+    .max(30, "O valor informado deve ser menor que 30")
+    .required(
+      "Algum valor numérico maior que 0 e menor que trita deve ser informado "
+    ),
   nome: yup.boolean().required().default(false),
   idade: yup.boolean().required().default(false),
   cpf: yup.boolean().required().default(false),
